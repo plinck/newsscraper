@@ -1,2 +1,2 @@
-gcloud config set project paullinck-sampledeploy
+gcloud config set project paullinck-newsscraper
 gcloud app deploy

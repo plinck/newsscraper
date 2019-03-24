@@ -1,5 +1,5 @@
 {
-  "name": "sampledeploy",
+  "name": "newsscraper",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plinck/sampledeploy.git"
+    "url": "git+https://github.com/plinck/newsscraper.git"
   },
   "author": "Paul Linck",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/plinck/sampledeploy/issues"
+    "url": "https://github.com/plinck/newsscraper/issues"
   },
-  "homepage": "https://github.com/plinck/sampledeploy#readme",
+  "homepage": "https://github.com/plinck/newsscraper#readme",
   "dependencies": {
     "concurrently": "^4.1.0",
     "express": "^4.16.4"

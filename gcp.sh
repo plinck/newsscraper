@@ -1,1 +1,1 @@
-gcloud projects create paullinck-sampledeploy
+gcloud projects create paullinck-newsscraper
