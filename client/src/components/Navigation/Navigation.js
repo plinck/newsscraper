@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Navigation.css';
-
 
 class Navigation extends React.Component {
     constructor(props) {
@@ -19,38 +17,32 @@ class Navigation extends React.Component {
 
     render() {
         return (
+            // <!--  NAV -->
             <div>
-                <ul className="sidenav" id="mobile-menu">
-                    <li>
-                        <div className="user-view">
-                            <div className="background">
-                                <img alt="Background" className="responsive-img" src="./images/portfolio-background.jpg" />
-                            </div>
-                        </div>
-                    </li>
-                    <li><Link to="/">Landing</Link></li>
-                    <li><Link to="/Home">Home</Link></li>
-                    <li><Link to="/Saved">Saved Articles</Link></li>
-                    <li><Link to="/ScrapeNew">Scrape New</Link></li>
-                    <li><Link to="/Clear">Clear</Link></li>
+                <nav class="nav-wrapper indigo">
+                    <div class="container">
+                        <a href="/index" class="brand-logo left hide-on-med-and-down"><i class="material-icons">home</i>NewsScraper</a>
+                        <a href="#!" class="sidenav-trigger" data-target="mobile-links">
+                            <i class="material-icons">menu</i>
+                            <a href="/index" class="brand-logo"><i class="material-icons">home</i>NewsScraper</a>
+                        </a>
+                        <ul class="right hide-on-med-and-down">
+                            <li><Link to="/">Landing</Link></li>
+                            <li><Link to="/Saved">Saved</Link></li>
+                            <li><Link to="/ScrapeNew">Scrape</Link></li>
+                            <li><Link to="/Clear">Clear</Link></li>
+                        </ul>
+                    </div>
+                </nav>
+                <ul class="sidenav" id="mobile-links">
+                    <a href="#!" class="brand-logo"><i class="material-icons">home</i>Home</a>
+                        <li><Link to="/">Landing</Link></li>
+                        <li><Link to="/Saved">Saved</Link></li>
+                        <li><Link to="/ScrapeNew">Scrape</Link></li>
+                        <li><Link to="/Clear">Clear</Link></li>
                 </ul>
-
-                <div id={styles.navbarFixed} className='navbar-fixed'>
-                    <nav id={styles.navBar} className={this.navBarClass}>
-                        <div className="container nav-wrapper">
-                            <div id={styles.headerName} className="brand-logo"><a href="#!">Scraper</a></div>
-                            <a href="#!" data-target="mobile-menu" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-                            <ul className="right hide-on-med-and-down">
-                                <li><Link to="/">Landing</Link></li>
-                                <li><Link to="/Home">Home</Link></li>
-                                <li><Link to="/Saved">Saved Articles</Link></li>
-                                <li><Link to="/ScrapeNew">Scrape New</Link></li>
-                                <li><Link to="/Clear">Clear</Link></li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
             </div>
+            // <!--  END NAV -->
         );
     }
 }
