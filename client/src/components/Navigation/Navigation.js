@@ -21,10 +21,9 @@ class Navigation extends React.Component {
             <div>
                 <ul className="sidenav" id="mobile-links">
                     <a href="/" className="brand-logo"><i className="material-icons">home</i>Home</a>
-                        <li><Link to="/">Landing</Link></li>
-                        <li><Link to="/Saved">Saved</Link></li>
-                        <li><Link to="/Articles">Scrape</Link></li>
-                        <li><Link to="/Clear">Clear</Link></li>
+                        <li><a href="/Saved">Saved</a></li>
+                        <li><a href="/Articles">Scrape</a></li>
+                        <li><a href="/Clear">Clear</a></li>
                 </ul>
                 <nav className="nav-wrapper indigo">
                     <div className="container">
@@ -35,7 +34,7 @@ class Navigation extends React.Component {
                         <ul className="right hide-on-med-and-down">
                             <li><Link to="/">Landing</Link></li>
                             <li><Link to="/Saved">Saved</Link></li>
-                            <li><Link to="/Articles">Scrape</Link></li>
+                            <li><a href="/Articles">Scrape</a></li>
                             <li><Link to="/Clear">Clear</Link></li>
                         </ul>
                     </div>
