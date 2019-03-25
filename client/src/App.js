@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import Landing from './components/Landing/Landing';
-import Home from './components/Home/Home';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Articles from './components/Articles/Articles';
 
 class App extends Component {
   constructor(props) {
@@ -32,18 +32,18 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-      <div className="container">
-        <Navigation />
-        <Route
-          exact path="/"
-          render={() => (
-          <Landing {...this.state} />
-          )}
-        />        
-        <Route path="/Home" component={Home} />
-      </div>
-      </Router>
+        <Router>
+            <div className="container">
+                <Navigation />
+                <Route
+                    exact path="/"
+                    render={() => (
+                    <Landing {...this.state} />
+                    )}
+                /> 
+                <Route path="/Articles" component={Articles} />      
+            </div>
+        </Router>
     );
   }
 }

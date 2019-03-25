@@ -19,28 +19,27 @@ class Navigation extends React.Component {
         return (
             // <!--  NAV -->
             <div>
-                <nav class="nav-wrapper indigo">
-                    <div class="container">
-                        <a href="/index" class="brand-logo left hide-on-med-and-down"><i class="material-icons">home</i>NewsScraper</a>
-                        <a href="#!" class="sidenav-trigger" data-target="mobile-links">
-                            <i class="material-icons">menu</i>
-                            <a href="/index" class="brand-logo"><i class="material-icons">home</i>NewsScraper</a>
+                <ul className="sidenav" id="mobile-links">
+                    <a href="/" className="brand-logo"><i className="material-icons">home</i>Home</a>
+                        <li><Link to="/">Landing</Link></li>
+                        <li><Link to="/Saved">Saved</Link></li>
+                        <li><Link to="/Articles">Scrape</Link></li>
+                        <li><Link to="/Clear">Clear</Link></li>
+                </ul>
+                <nav className="nav-wrapper indigo">
+                    <div className="container">
+                        <a href="/" className="brand-logo left hide-on-med-and-down"><i className="material-icons">home</i>NewsScraper</a>
+                        <a href="#!" className="sidenav-trigger" data-target="mobile-links">
+                            <i className="material-icons">menu</i>
                         </a>
-                        <ul class="right hide-on-med-and-down">
+                        <ul className="right hide-on-med-and-down">
                             <li><Link to="/">Landing</Link></li>
                             <li><Link to="/Saved">Saved</Link></li>
-                            <li><Link to="/ScrapeNew">Scrape</Link></li>
+                            <li><Link to="/Articles">Scrape</Link></li>
                             <li><Link to="/Clear">Clear</Link></li>
                         </ul>
                     </div>
                 </nav>
-                <ul class="sidenav" id="mobile-links">
-                    <a href="#!" class="brand-logo"><i class="material-icons">home</i>Home</a>
-                        <li><Link to="/">Landing</Link></li>
-                        <li><Link to="/Saved">Saved</Link></li>
-                        <li><Link to="/ScrapeNew">Scrape</Link></li>
-                        <li><Link to="/Clear">Clear</Link></li>
-                </ul>
             </div>
             // <!--  END NAV -->
         );
