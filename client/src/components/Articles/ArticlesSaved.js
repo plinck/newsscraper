@@ -12,24 +12,29 @@ class Articles extends React.Component {
         };
     }
 
-    // Scrape all the articles on mount
-    componentDidMount() {
+    refreshPage = () => {
         // Call node to scrape
-        axios.get(`/api/scrape`)
+        axios.get(`/api/savedArticles`)
         .then(res => {
-          const articles = [...res.data];
-          this.setState({ articles: articles });
+            const articles = [...res.data];
+            this.setState({ articles: articles });
         })
         .catch(err => {
             console.error(err); 
-        });
+        });        
+    };
+
+
+    // Scrape all the articles on mount
+    componentDidMount() {
+        this.refreshPage();
     }
     
     render() {
         return (
             <div className="row">
             {this.state.articles.map((info, i) => {
-                return(<Article saved={false} key={i} url={info.url} imageUrl={info.imageUrl} title={info.title} body={info.body} />);
+                return(<Article refreshParentPage={this.refreshPage} saved={true} _id={info._id} key={info._id} url={info.url} imageUrl={info.imageUrl} title={info.title} body={info.body} />);
             })}
             </div>
         );

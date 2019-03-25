@@ -4,6 +4,7 @@ import Navigation from './components/Navigation/Navigation';
 import Landing from './components/Landing/Landing';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Articles from './components/Articles/Articles';
+import ArticlesSaved from './components/Articles/ArticlesSaved';
 
 class App extends Component {
   constructor(props) {
@@ -42,6 +43,7 @@ class App extends Component {
                     )}
                 /> 
                 <Route path="/Articles" component={Articles} />      
+                <Route path="/ArticlesSaved" component={ArticlesSaved} />      
             </div>
         </Router>
     );
