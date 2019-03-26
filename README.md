@@ -44,7 +44,7 @@ This is deployed to **Google Cloud Platform** AND Heroku -- I deployed to both. 
   
      * ImageUrl - if it exists
 
-  2. Users can leave leave comments on the articles they saved to revisit them later.
+  2. Users can leave comments on the articles they saved to revisit them later.
 
   3. Users can delete saved articles and comments left on articles. All stored comments should be visible to every user.
 

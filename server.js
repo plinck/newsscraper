@@ -69,12 +69,14 @@ app.get("/api/scrape", function (req, res) {
     });
 });
 
-// Route for getting all Articles saved from the db
+// Route for getting all Articles saved from the db with their notes
 app.get("/api/savedArticles", (req, res) => {
     // Grab every document in the Articles collection
     db.Article.find({})
+        // get notes with tis article
+        .populate("notes")
         .then(function (dbArticle) {
-            // If we were able to successfully find Articles, send them back to the client
+            // If we were able to successfully find Articles, send them back to the client with their notes
             res.json(dbArticle);
         })
         .catch(function (err) {
@@ -83,7 +85,29 @@ app.get("/api/savedArticles", (req, res) => {
         });
 });
 
+// POST route for saving a new Note to the db and associating it with an Article
+app.post("/api/saveArticleNote", function(req, res) {
+    let articleId = req.body.articleId;
+    let note = {};
+    note.user = req.body.user;
+    note.comments = req.body.comments;
+    note.articleId = req.body.articleId;
+    db.Note.create(note)
+        .then((dbNote) => {
+            return db.Article.findOneAndUpdate({_id: articleId}, { $push: { notes: dbNote._id } }, { new: true });
+        })
+        .then((dbArticle) => {
+        // If the Article was updated successfully, send it back to the client
+            res.json(dbArticle);
+        })
+        .catch((err) => {
+        // If an error occurs, send it back to the client
+            res.json(err);
+        });
+});
+
 // Route for saving an Article to the DB
+// Using post since axios is hackish using delete route - I dont like it
 app.post("/api/saveArticle", (req, res) => {
     // Grab every document in the Articles collection
     let article = req.body;
@@ -91,12 +115,10 @@ app.post("/api/saveArticle", (req, res) => {
     db.Article.create(article)
         .then((dbArticle) => {
             // View the added result in the console
-            console.log(dbArticle);
             res.json(dbArticle);
         })
         .catch((err) => {
             // If an error occurred, log it
-            console.log(err);
             res.json(err);
         });
 });
@@ -105,20 +127,56 @@ app.post("/api/saveArticle", (req, res) => {
 app.post("/api/deleteArticle", (req, res) => {
     // Grab every document in the Articles collection
     let _id = req.body._id;
+    let articleId = req.body._id;   // to make it clear I am deleting notes with this article Id
 
-    db.Article.deleteOne({
-            _id: _id
-        })
-        .then((dbArticle) => {
-            // View the added result in the console
-            console.log(dbArticle);
-            return res.status(200).send(dbArticle);
-        })
-        .catch((err) => {
-            // If an error occurred, log it
-            console.log(err);
-            res.json(err);
-        });
+    // Delete all notes for this article first
+    db.Note.deleteMany({
+        articleId: articleId
+    })
+    .then(dbNote => {
+        // then delete the article
+        return db.Article.deleteOne({_id: _id});
+    })
+    .then((dbArticle) => {
+        return res.status(200).send(dbArticle);
+    })
+    .catch((err) => {
+        // If an error occurred, log it
+        res.json(err);
+    });
+});
+
+// Route for grabbing a specific Article by id, populate it with it's note
+app.get("/articles/:id", (req, res) => {
+  db.Article.findOne({ _id: req.params.id })
+    // populate all of the notes associated with it
+    .populate("note")
+    .then((dbArticle) => {
+      res.json(dbArticle);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+// Route for saving/updating an Article's associated Note
+app.post("/articles/:id", (req, res) => {
+  let note = req.body;
+  db.Note.create(req.body)
+    .then((dbNote) => {
+      // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
+      // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
+      // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
+      return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+    })
+    .then((dbArticle) => {
+      // If we were able to successfully update an Article, send it back to the client
+      res.json(dbArticle);
+    })
+    .catch((err) => {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
 });
 
 
