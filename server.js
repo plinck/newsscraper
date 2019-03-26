@@ -19,12 +19,6 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
-// Make sure our React files are being served by our Express server.
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, 'client/build')))
-
-
-
 // const MongoClient = require('mongodb').MongoClient;
 // const client = new MongoClient(uri, { useNewUrlParser: true });
 // client.connect(err => {
@@ -95,12 +89,12 @@ app.post("/api/saveArticle", (req, res) => {
     let article = req.body;
 
     db.Article.create(article)
-        .then( (dbArticle) => {
+        .then((dbArticle) => {
             // View the added result in the console
             console.log(dbArticle);
             res.json(dbArticle);
         })
-        .catch( (err) => {
+        .catch((err) => {
             // If an error occurred, log it
             console.log(err);
             res.json(err);
@@ -112,13 +106,15 @@ app.post("/api/deleteArticle", (req, res) => {
     // Grab every document in the Articles collection
     let _id = req.body._id;
 
-    db.Article.deleteOne({ _id: _id})
-        .then( (dbArticle) => {
+    db.Article.deleteOne({
+            _id: _id
+        })
+        .then((dbArticle) => {
             // View the added result in the console
             console.log(dbArticle);
             return res.status(200).send(dbArticle);
         })
-        .catch( (err) => {
+        .catch((err) => {
             // If an error occurred, log it
             console.log(err);
             res.json(err);
@@ -134,23 +130,32 @@ app.get('/api/user', (req, res) => {
     });
 })
 
-//production mode - serve from build dir, else serve from public
-if ((process.env.GCLOUD_PROJECT !== undefined) || (process.env.NODE_ENV === 'production')) {
-    // GCLOUD
-    app.use(express.static(path.join(__dirname, 'client/build')));
-    console.log(path.join(__dirname, 'client/build'));
+// Make sure our React files are being served by our Express server.
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
-    app.get('*', (req, res) => {
-        console.log(path.join(__dirname, '/client/build/index.html'));
-        res.sendfile(path.join(__dirname = '/client/build/index.html'));
-    })
-} else {
-    //build mode
-    app.get('*', (req, res) => {
-        console.log(path.join(__dirname, '/client/public/index.html'));
-        res.sendFile(path.join(__dirname + '/client/public/index.html'));
-    })
-}
+app.get('*', function (req, res) {
+    const index = path.join(__dirname, 'client', 'build', 'index.html');
+    res.sendFile(index);
+});
+
+// //production mode - serve from build dir, else serve from public
+// if ((process.env.GCLOUD_PROJECT !== undefined) || (process.env.NODE_ENV === 'production')) {
+//     // GCLOUD
+//     app.use(express.static(path.join(__dirname, 'client/build')));
+//     console.log(path.join(__dirname, 'client/build'));
+
+//     app.get('*', (req, res) => {
+//         console.log(path.join(__dirname, '/client/build/index.html'));
+//         res.sendfile(path.join(__dirname = '/client/build/index.html'));
+//     })
+// } else {
+//     //build mode
+//     app.get('*', (req, res) => {
+//         console.log(path.join(__dirname, '/client/public/index.html'));
+//         res.sendFile(path.join(__dirname + '/client/public/index.html'));
+//     })
+// }
 
 //Start server
 app.listen(port, (req, res) => {
