@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+require("dotenv").config();
 const port = process.env.PORT || 5000;
 
 var mongoose = require("mongoose");
@@ -22,10 +23,26 @@ app.use(express.json());
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')))
 
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost:27017/newsscraperdb", {
+
+
+// const MongoClient = require('mongodb').MongoClient;
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
+const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-1qm5r.gcp.mongodb.net/newsscraperdb?retryWrites=true`;
+// Connect to the Mongo DB ATLAS
+mongoose.connect(uri, {
     useNewUrlParser: true
 });
+
+// // Connect to the Mongo DB LOCAL
+// mongoose.connect("mongodb://localhost:27017/newsscraperdb", {
+//     useNewUrlParser: true
+// });
 
 // A GET route for scraping the  website
 app.get("/api/scrape", function (req, res) {
