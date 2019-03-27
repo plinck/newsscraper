@@ -25,11 +25,8 @@ class Note extends React.Component {
 
         return ( 
             <div className="row">
-                <div className="s3 m3">
-                    {user}
-                </div>
-                <div className="s9 m9">
-                    <div className="truncate">{comments}</div>
+                <div>
+                    {user} - {comments}
                 </div>
             </div>
         );

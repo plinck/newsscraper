@@ -17,8 +17,8 @@ class Notes extends React.Component {
         }
         
         return (
+            // Only display comments header if there are comments
             <div>
-                <p>Comments</p>
                 {notesRender}
             </div>
         );
