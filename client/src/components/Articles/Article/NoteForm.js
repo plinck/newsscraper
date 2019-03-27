@@ -19,15 +19,9 @@ class NoteForm extends React.Component {
         });
     }
 
-    userChange = (e) => {
+    handleChange = (e) => {
         this.setState({
-            user: e.target.value
-        });
-    }
-
-    commentsChange = (e) => {
-        this.setState({
-            comments: e.target.value
+            [e.target.id]: e.target.value
         });
     }
 
@@ -45,11 +39,11 @@ class NoteForm extends React.Component {
                     <form onSubmit={this.handleSubmit} className="col s12">
                         <div className="row">
                             <div className="active input-field col s12 m3">
-                                <input onChange={this.userChange} type="text" className="active validate" required="" aria-required="true" />
+                                <input id="user" onChange={this.handleChange} type="text" className="active validate" required="" aria-required="true" />
                                 <label className="active" for="name">Name</label>
                             </div>
                             <div className="input-field col s12 m9">
-                                <input onChange={this.commentsChange} type="text" className="active validate" required="" aria-required="true" />
+                                <input id="comments" onChange={this.handleChange} type="text" className="active validate" required="" aria-required="true" />
                                 <label className="active" for="mySystemNumber">Comments</label>
                             </div>
                         </div>
