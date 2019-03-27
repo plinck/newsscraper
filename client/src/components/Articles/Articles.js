@@ -29,7 +29,13 @@ class Articles extends React.Component {
         return (
             <div className="row">
             {this.state.articles.map((info, i) => {
-                return(<Article saved={false} key={i} url={info.url} imageUrl={info.imageUrl} title={info.title} body={info.body} />);
+                return(<Article saved={false} 
+                    gotoSavedArticles={this.gotoSavedArticles}
+                    key={i}
+                    url={info.url}
+                    imageUrl={info.imageUrl}
+                    title={info.title}
+                    body={info.body} />);
             })}
             </div>
         );
