@@ -39,12 +39,29 @@ class NoteForm extends React.Component {
 
     render(){
         return(
-            <div className="app-content">
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" onChange={this.userChange} />
-                    <input type="text" onChange={this.commentsChange} />
-                    <button>Submit</button>
-                </form>
+            <div>
+                <p>Add Comment</p>
+                <div className="row">
+                    <form onSubmit={this.handleSubmit} className="col s12">
+                        <div className="row">
+                            <div className="active input-field col s12 m3">
+                                <input onChange={this.userChange} type="text" className="active validate" required="" aria-required="true" />
+                                <label className="active" for="name">Name</label>
+                            </div>
+                            <div className="input-field col s12 m9">
+                                <input onChange={this.commentsChange} type="text" className="active validate" required="" aria-required="true" />
+                                <label className="active" for="mySystemNumber">Comments</label>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="center-align">
+                                <button className="btn waves-effect waves-light blue" type="submit" name="submit">Submit
+                                    <i className="material-icons right">save</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         );
     }

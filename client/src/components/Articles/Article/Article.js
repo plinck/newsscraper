@@ -75,7 +75,7 @@ class Article extends React.Component {
         let notesFooterDiv = this.notesFooter();
 
         return ( 
-            <div className="col s12 m6 l4">
+            <div className="col s12 m6 l6">
                 <div className="card">
                     <div className="card-image">
                         <img className="materialboxed" src={imgUrl} alt="" />
@@ -95,8 +95,10 @@ class Article extends React.Component {
                             <i className="articleDelete material-icons left" onClick={this.deleteArticle.bind(this)}>delete</i>
                         </a>
                     </div>
-                    <div className="card-footer">
+                    <div className="card-action">
                         {notesFooterDiv}
+                    </div>
+                    <div className="card-action">
                         {notesFormDiv}
                     </div>
                 </div>

@@ -24,9 +24,13 @@ class Note extends React.Component {
         let { user, comments } =  this.props;
 
         return ( 
-            <div>
-                <p className="flow-text card-title">{user}</p>
-                <p className="truncate">{comments}</p>
+            <div className="row">
+                <div className="s3 m3">
+                    {user}
+                </div>
+                <div className="s9 m9">
+                    <div className="truncate">{comments}</div>
+                </div>
             </div>
         );
     }

@@ -18,6 +18,7 @@ class Notes extends React.Component {
         
         return (
             <div>
+                <p>Comments</p>
                 {notesRender}
             </div>
         );
