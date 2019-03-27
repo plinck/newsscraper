@@ -1,8 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import axios from 'axios';
-import Notes from './Notes';
-import NoteForm from './NoteForm';
 
 class Article extends React.Component {
     constructor(props) {
@@ -35,43 +33,6 @@ class Article extends React.Component {
         }
     }
 
-    // Delete this article from MongoDB
-    deleteArticle = (event) => {
-        // Call node to save article
-        // Only delete if it was saved with valid Object ID
-        console.log(event.target);
-
-        if (this.props.saved) {
-            axios.post(`/api/deleteArticle`, { _id: this.props._id } )
-            .then(res => {
-                console.log("Deleted article from saved");
-                // Update paremt to take off this view
-                this.props.refreshParentPage();
-            })
-            .catch(err => {
-                console.error(err); 
-            });
-        }
-    }
-
-    // Only show notes if this is saved article
-    notesFooter = () => {
-        if (this.props.saved) {
-            return(
-                <Notes notes={this.props.notes} />
-            );
-        }
-    }
-
-    // Only form if this is saved article
-    notesForm = () => {
-        if (this.props.saved) {
-            return(
-                <NoteForm articleId={this.props._id} />
-            );
-        }
-    }
-
     handleMouseOver = (e) => {
         console.log(e.target, e.pageX);
         e.currentTarget.className = 'material-icons red';
@@ -88,13 +49,10 @@ class Article extends React.Component {
         }
       
         // decontruct props
-        let { imgUrl, title, body, url, notes } =  this.props;
-        if (imgUrl === undefined || imgUrl === "") {
+        let { imgUrl, title, body, url } =  this.props;
+        if (!imgUrl) {
             imgUrl = "./images/NewsScraper275x200.png";
         } 
-
-        let notesFormDiv = this.notesForm();
-        let notesFooterDiv = this.notesFooter();
 
         return ( 
             <div className="col s12 m6 l6">
@@ -116,20 +74,10 @@ class Article extends React.Component {
                     </div>
                     <div className="card-action">
                         <a target="_blank" rel="noopener noreferrer" href={url} className="indigo-text text-darken-4" data-target="modal-post">
-                            <i className="articleInfo material-icons left">info</i>
+                            <i className="articleInfo material-icons left">open_in_browser</i>
                         </a>
-                        <a href="#!" className="indigo-text text-darken-4">
-                            <i className="articleDelete material-icons left" onClick={this.deleteArticle.bind(this)}>delete</i>
-                        </a>
-                    </div>
-                    <div className="card-action">
-                        {notesFooterDiv}
-                    </div>
-                    <div className="card-action">
-                        {notesFormDiv}
                     </div>
                 </div>
-          
             </div>
         );
     }

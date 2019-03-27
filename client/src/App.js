@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
-import Landing from './components/Landing/Landing';
+import Dashboard from './components/Dashboard/Dashboard';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Articles from './components/Articles/Articles';
 import ArticlesSaved from './components/Articles/ArticlesSaved';
@@ -39,7 +39,7 @@ class App extends Component {
                 <Route
                     exact path="/"
                     render={() => (
-                    <Landing {...this.state} />
+                    <Dashboard {...this.state} />
                     )}
                 /> 
                 <Route path="/Articles" component={Articles} />      

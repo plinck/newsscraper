@@ -1,5 +1,5 @@
 import React from 'react';
-import Article from './Article/Article';
+import ArticleSaved from './Article/ArticleSaved';
 import axios from 'axios';
 
 class Articles extends React.Component {
@@ -34,9 +34,8 @@ class Articles extends React.Component {
         return (
             <div className="row">
             {this.state.articles.map((article, i) => {
-                return(<Article 
+                return(<ArticleSaved 
                     refreshParentPage={this.refreshPage}
-                    saved={true}
                     _id={article._id}
                     key={article._id}
                     url={article.url}
