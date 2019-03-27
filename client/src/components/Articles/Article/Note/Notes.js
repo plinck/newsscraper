@@ -2,6 +2,11 @@ import React from 'react';
 import Note from './Note';
 
 class Notes extends React.Component {
+    refreshPage = () => {
+        // Call node to scrape
+        console.log("refresh notes");    
+    };
+
     // Scrape all the articles on mount
     render() {
         // decontruct props
@@ -11,8 +16,8 @@ class Notes extends React.Component {
 
         // Only render notes if they exist
         if (notes && notes.length > 0) {
-            notesRender = notes.map((note, i) => {
-                return(<Note key={note._id} user={note.user} comments={note.comments} articleId={note.articleId} />);
+            notesRender = notes.map((note) => {
+                return(<Note refreshParentPage={this.refreshPage} key={note._id} user={note.user} comments={note.comments} articleId={note.articleId} />);
             });
         }
         

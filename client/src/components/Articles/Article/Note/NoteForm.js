@@ -48,9 +48,9 @@ class NoteForm extends React.Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="center-align">
-                                <button className="btn waves-effect waves-light blue" type="submit" name="submit">Submit
-                                    <i className="material-icons right">save</i>
+                            <div className="left-align">
+                                <button className="btn waves-effect waves-light blue" type="submit" name="submit">Add Comment
+                                    <i className="material-icons right">note_add</i>
                                 </button>
                             </div>
                         </div>

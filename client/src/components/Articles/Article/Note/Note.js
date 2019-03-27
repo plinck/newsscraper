@@ -8,9 +8,9 @@ class Note extends React.Component {
         // Only delete if it was saved with valid Object ID
         console.log(event.target);
 
-        axios.post(`/api/deleteArticle`, { _id: this.props._id } )
+        axios.post(`/api/deleteNote`, { _id: this.props._id } )
         .then(res => {
-            console.log("Deleted article from saved");
+            console.log("Deleted note");
             // Update paremt to take off this view
             this.props.refreshParentPage();
         })
@@ -26,6 +26,7 @@ class Note extends React.Component {
         return ( 
             <div className="row">
                 <div>
+                    <i className="articleDelete material-icons left red-text" onClick={this.deleteNote.bind(this)}>delete_forever</i>
                     {user} - {comments}
                 </div>
             </div>
