@@ -19,20 +19,20 @@ class Navigation extends React.Component {
             // <!--  NAV -->
             <div>
                 <ul className="sidenav" id="mobile-links">
-                    <a href="/" className="brand-logo"><i className="material-icons">home</i>Home</a>
+                    <a href="/" className="brand-logo"><i className="material-icons">markunread_mailbox</i>Home</a>
                     <li><a href="/Articles">Scrape</a></li>
                     <li><a href="/ArticlesSaved">Saved</a></li>
                 </ul>
                 <nav className="nav-wrapper indigo">
                     <div className="container">
-                        <a href="/" className="brand-logo left hide-on-med-and-down"><i className="material-icons">home</i>NewsScraper</a>
+                        <a href="/" className="brand-logo left hide-on-med-and-down"><i className="material-icons">markunread_mailbox</i>NewsScraper</a>
                         <a href="#!" className="sidenav-trigger" data-target="mobile-links">
                             <i className="material-icons">menu</i>
                         </a>
                         <ul className="right hide-on-med-and-down">
                             <li><Link to="/">Dashboard</Link></li>
-                            <li><a href="/Articles">Scrape</a></li>
-                            <li><Link to="/ArticlesSaved">Saved</Link></li>
+                            <li><a href="/Articles">Scrape<i className="material-icons white-text right">content_cut</i></a></li>
+                            <li><Link to="/ArticlesSaved">Saved<i className="material-icons white-text right">save</i></Link></li>
                         </ul>
                     </div>
                 </nav>

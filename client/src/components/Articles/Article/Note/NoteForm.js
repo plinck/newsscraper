@@ -36,7 +36,7 @@ class NoteForm extends React.Component {
     render(){
         return(
             <div>
-                <p>Add Comment</p>
+                <p><i className="material-icons blue-text">comment</i>Add Comment</p>
                 <div className="row">
                     <form onSubmit={this.handleSubmit} className="col s12">
                         <div className="row">
