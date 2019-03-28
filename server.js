@@ -101,12 +101,48 @@ freeBeaconScrape = (aCallback) => {
 
 }
 
+cnetScrape = (aCallback) => {
+    axios.get("https://www.cnet.com/news/").then((response) => {
+        // Then, we load that into cheerio and save it to $ for a shorthand selector
+        let $ = cheerio.load(response.data);
+
+        // Create an empty array of objects to hold the articles
+        let articles = [];
+
+        // Now, we grab every h2 within an article tag, and do the following:
+        $(".assetBody").each(function (i, element) {
+            // Save an empty  object
+            var article = {};
+
+            // Add the text and href of every link, and save them as properties of the result object
+            article.url = $(this).children("a").attr("href");
+            article.imageUrl = $(this).children("a").children("figure").children("img").attr("src");
+            article.title = $(this).children(".assetText").children("h5").children("a").text();
+            article.body = $(this).children(".assetText").children(".author").children("a").text();
+
+            // add to the array - only if valid title
+            if (article.title) {
+                articles.push(article);
+            }
+
+        });
+
+        // Send articles to caller
+        aCallback(articles);
+    });
+
+}
+
 // A GET route for scraping the  website
 app.get("/api/scrape",  (req, res) => {
-    freeBeaconScrape(articles => {
-        // Send a message to the client
-        res.json(articles);
+    cnetScrape(articles1 => {
+        freeBeaconScrape(articles2 => {
+            // Send a message to the client
+            let articles = [...articles1, ...articles2]
+            res.json(articles);
+        });
     });
+
 
     // echoJSScrape(articles => {
     //     // Send a message to the client

@@ -4,17 +4,18 @@
 
 ![NewsScraper](client/public/images/NewsScraper275x200.png)
 
-Scrapes news articles and allows you to save for later viewing.  Also lets users view and leave comments on the latest news. 
+Scrapes news articles and allows you to save for later viewing.  Also lets users view and leave comments on the latest news. Current I am scraping news articles from CNET and Free Beacon but have it setup to add as many as I like.
 
 **NOTE**:  The app is fully deployed to the gooogle could platform and Heroku.  I did NOT use handlebars since I chose to use react instead since REACT is a much more important tool moving forward.
 
 ### Deployment
 
-This is deployed to **Google Cloud Platform** AND Heroku -- I deployed to both.  It provides several huge advantages especially as it relates to security and hiding keys and credentials.  When app is running in test mode, sensitive data is stored in hidden files on developers local machine. When depoloyed to google cloud platform, the services keys, credentials etc are automatically protected and accessed inside the google cloud platform App engine.
+This is deployed to **Google Cloud Platform** AND Heroku -- I deployed to both.  GCP provides several huge advantages especially as it relates to security and hiding keys and credentials.  When app is running in test mode, sensitive data is stored in hidden files on developers local machine. When depoloyed to google cloud platform, the services keys, credentials etc are automatically protected and accessed inside the google cloud platform App engine.
 
 ## Links
 
 * [Live Google Cloud Platform Site](https://paullinck-newsscraper.appspot.com)
+* [Live Heroku Site](https://paullinck-newsscraper.herokuapp.com)
 * [GitHub for this](https://github.com/plinck/newsscraper)
 * [My Portfolio](https://plinck.github.io/My-Portfolio/)
 
@@ -30,6 +31,16 @@ This is deployed to **Google Cloud Platform** AND Heroku -- I deployed to both. 
 * [x] Materialize
 * [x] Google Cloud Platform
 * [x] Heroku (hosted on Heroku and GCP)
+
+## Screenshots
+
+![ss1 animated](client/public/images/ss1.gif)
+
+![ss2](client/public/images/ss2.png)
+
+![ss3](client/public/images/ss3.png)
+
+![ss4](client/public/images/ss4.png)
 
 ## Details
 
