@@ -11,6 +11,8 @@ class NoteForm extends React.Component {
         axios.post(`/api/addNote/${this.props.articleId}`, { user: this.state.user, comments: this.state.comments } )
         .then(res => {
             console.log("Note saved");
+            this.props.refreshParentPage();
+
             // Update parent to take off this view
             // this.props.refreshParentPage();
         })
@@ -39,12 +41,12 @@ class NoteForm extends React.Component {
                     <form onSubmit={this.handleSubmit} className="col s12">
                         <div className="row">
                             <div className="active input-field col s12 m3">
-                                <input id="user" onChange={this.handleChange} type="text" className="active validate" required="" aria-required="true" />
-                                <label className="active" for="name">Name</label>
+                                <input id="user" name="user" onChange={this.handleChange} type="text" className="active validate" required="" aria-required="true" />
+                                <label className="active" htmlFor="user">Name</label>
                             </div>
                             <div className="input-field col s12 m9">
-                                <input id="comments" onChange={this.handleChange} type="text" className="active validate" required="" aria-required="true" />
-                                <label className="active" for="mySystemNumber">Comments</label>
+                                <input id="comments" name="comments" onChange={this.handleChange} type="text" className="active validate" required="" aria-required="true" />
+                                <label className="active" htmlFor="comments">Comments</label>
                             </div>
                         </div>
                         <div className="row">

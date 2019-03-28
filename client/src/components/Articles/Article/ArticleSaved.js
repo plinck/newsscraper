@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router';
 import axios from 'axios';
 import Notes from './Note/Notes';
 import NoteForm from './Note/NoteForm';
@@ -28,17 +27,21 @@ class ArticleSaved extends React.Component {
             });
     }
 
+    refreshPage = () => {
+        this.props.refreshParentPage();
+    }
+
     // Only show notes if this is saved article
     notesFooter = () => {
         return(
-            <Notes notes={this.props.notes} />
+            <Notes notes={this.props.notes} refreshParentPage={this.refreshPage} />
         );
     }
 
     // Only form if this is saved article
     notesForm = () => {
         return(
-            <NoteForm articleId={this.props._id} />
+            <NoteForm articleId={this.props._id} refreshParentPage={this.refreshPage}/>
         );
     }
 

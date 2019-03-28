@@ -8,7 +8,7 @@ class Note extends React.Component {
         // Only delete if it was saved with valid Object ID
         console.log(event.target);
 
-        axios.post(`/api/deleteNote`, { _id: this.props._id } )
+        axios.post(`/api/deleteNote`, { _id: this.props._id, articleId: this.props.articleId } )
         .then(res => {
             console.log("Deleted note");
             // Update paremt to take off this view
@@ -26,7 +26,11 @@ class Note extends React.Component {
         return ( 
             <div className="row">
                 <div>
-                    <i className="articleDelete material-icons left red-text" onClick={this.deleteNote.bind(this)}>delete_forever</i>
+                    <i style={{cursor: 'pointer'}}
+                    className="articleDelete material-icons left red-text"
+                    onClick={this.deleteNote}>
+                    delete_forever
+                    </i>
                     {user} - {comments}
                 </div>
             </div>

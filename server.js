@@ -138,13 +138,37 @@ app.post("/api/deleteArticle", (req, res) => {
         return db.Article.deleteOne({_id: _id});
     })
     .then((dbArticle) => {
-        return res.status(200).send(dbArticle);
+        res.status(200).send(dbArticle);
     })
     .catch((err) => {
         // If an error occurred, log it
         res.json(err);
     });
 });
+
+// Route for Deleting a single note
+// TODO: - Delete the referce from article as well
+app.post("/api/deleteNote", (req, res) => {
+    let _id = req.body._id;
+    let articleId = req.body.articleId;
+
+    // Delete notes
+    db.Note.deleteOne({
+        _id: _id
+    })
+    .then(dbNote => {
+        // then take the _id out of the article array and update it
+        return db.Article.findOneAndUpdate({ _id: articleId }, { $pull: { notes: _id } }, { new: true });
+    })
+    .then(dbArticle => {
+        res.status(200).send(dbArticle);
+    })
+    .catch((err) => {
+        // If an error occurred, log it
+        res.json(err);
+    });
+});
+
 
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", (req, res) => {
