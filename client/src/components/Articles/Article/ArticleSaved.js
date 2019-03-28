@@ -56,35 +56,32 @@ class ArticleSaved extends React.Component {
         let notesFormDiv = this.notesForm();
 
         return ( 
-            <div className="col s12 m6 l6">
-                <div className="card">
-                    <div className="card-image">
-                        <img className="materialboxed" src={imgUrl} alt="" />
-                        <a href="#!" className="halfway-fab btn-floating grey">
-                            <i className={this.favsClasses}>favorite</i>
-                        </a>
-                    </div>
-                    <div className="card-content">
-                        <span className="flow-text card-title">{title}</span>
-                        <p className="truncate">{body}</p>
-                    </div>
-                    <div className="card-action">
-                        <a target="_blank" rel="noopener noreferrer" href={url} className="indigo-text text-darken-4" data-target="modal-post">
-                            <i className="articleInfo material-icons left">open_in_browser</i>
-                        </a>
-                        <a href="#!" className="indigo-text text-darken-4">
-                            <i className="articleDelete material-icons left" onClick={this.deleteArticle.bind(this)}>delete</i>
-                        </a>
-                    </div>
-                    <div className="card-action">
-                        {notesFooterDiv}
-                    </div>
-                    <div className="card-action">
-                        {notesFormDiv}
-                    </div>
+            <div className="card">
+                <div className="card-image">
+                    <img className="materialboxed" src={imgUrl} alt="" />
+                    <a href="#!" className="halfway-fab btn-floating grey">
+                        <i className={this.favsClasses}>favorite</i>
+                    </a>
                 </div>
-          
-            </div>
+                <div className="card-content">
+                    <span className="flow-text card-title">{title}</span>
+                    <p className="truncate">{body}</p>
+                </div>
+                <div className="card-action">
+                    <a target="_blank" rel="noopener noreferrer" href={url} className="indigo-text text-darken-4" data-target="modal-post">
+                        <i className="articleInfo material-icons left">open_in_browser</i>
+                    </a>
+                    <a href="#!" className="indigo-text text-darken-4">
+                        <i className="articleDelete material-icons left" onClick={this.deleteArticle.bind(this)}>delete</i>
+                    </a>
+                </div>
+                <div className="card-action">
+                    {notesFooterDiv}
+                </div>
+                <div className="card-action">
+                    {notesFormDiv}
+                </div>
+            </div>          
         );
     }
 }

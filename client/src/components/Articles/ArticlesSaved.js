@@ -34,16 +34,19 @@ class Articles extends React.Component {
         return (
             <div className="row">
             {this.state.articles.map((article, i) => {
-                return(<ArticleSaved 
-                    refreshParentPage={this.refreshPage}
-                    _id={article._id}
-                    key={article._id}
-                    url={article.url}
-                    imageUrl={article.imageUrl}
-                    title={article.title}
-                    body={article.body}
-                    notes={article.notes}
-                     />);
+                return(            
+                    <div className="col s12 m6 l6">
+                        <ArticleSaved 
+                        refreshParentPage={this.refreshPage}
+                        _id={article._id}
+                        key={article._id}
+                        url={article.url}
+                        imageUrl={article.imageUrl}
+                        title={article.title}
+                        body={article.body}
+                        notes={article.notes}/>
+                    </div>
+                    );
             })}
             </div>
         );
