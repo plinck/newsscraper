@@ -135,13 +135,17 @@ cnetScrape = (aCallback) => {
 
 // A GET route for scraping the  website
 app.get("/api/scrape",  (req, res) => {
-    cnetScrape(articles1 => {
-        freeBeaconScrape(articles2 => {
-            // Send a message to the client
-            let articles = [...articles1, ...articles2]
-            res.json(articles);
-        });
+    // cnetScrape(articles1 => {
+    //     let articles = [...articles1]
+    //     res.json(articles);
+    // });
+
+    freeBeaconScrape(articles2 => {
+        // Send a message to the client
+        let articles = [...articles2]
+        res.json(articles);
     });
+
 
 
     // echoJSScrape(articles => {
