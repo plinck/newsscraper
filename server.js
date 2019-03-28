@@ -38,9 +38,8 @@ mongoose.connect(uri, {
 //     useNewUrlParser: true
 // });
 
-// A GET route for scraping the  website
-app.get("/api/scrape", function (req, res) {
-    // First, we grab the body of the html with axios
+// scarpe echojs site
+echoJSScrape = (aCallback) => {
     axios.get("http://www.echojs.com/").then((response) => {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         let $ = cheerio.load(response.data);
@@ -64,9 +63,55 @@ app.get("/api/scrape", function (req, res) {
 
         });
 
+        // Send articles to caller
+        aCallback(articles);
+    });
+
+}
+
+freeBeaconScrape = (aCallback) => {
+    axios.get("https://freebeacon.com").then((response) => {
+        // Then, we load that into cheerio and save it to $ for a shorthand selector
+        let $ = cheerio.load(response.data);
+
+        // Create an empty array of objects to hold the articles
+        let articles = [];
+
+        // Now, we grab every h2 within an article tag, and do the following:
+        $("article").each(function (i, element) {
+            // Save an empty  object
+            var article = {};
+
+            // Add the text and href of every link, and save them as properties of the result object
+            article.url = $(this).children("header").children("h2").children("a").attr("href");
+            article.imageUrl = $(this).children("div.entry-summary").children("a").children("img").attr("src");
+            article.title = $(this).children("header").children("h2").children("a").text();
+            article.body = $(this).children("div.entry-summary").children("p").text();
+
+            // add to the array - only if valid title
+            if (article.title) {
+                articles.push(article);
+            }
+
+        });
+
+        // Send articles to caller
+        aCallback(articles);
+    });
+
+}
+
+// A GET route for scraping the  website
+app.get("/api/scrape",  (req, res) => {
+    freeBeaconScrape(articles => {
         // Send a message to the client
         res.json(articles);
     });
+
+    // echoJSScrape(articles => {
+    //     // Send a message to the client
+    //     res.json(articles);
+    // });
 });
 
 // Route for getting all Articles saved from the db with their notes

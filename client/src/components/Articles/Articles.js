@@ -30,7 +30,7 @@ class Articles extends React.Component {
             <div className="row">
             {this.state.articles.map((info, i) => {
                 return(
-                    <div className="col s12 m6 l6">
+                    <div key={i} className="col s12 m6 l6">
                         <Article saved={false} 
                         key={i}
                         url={info.url}

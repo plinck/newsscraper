@@ -22,7 +22,7 @@ var ArticleSchema = new Schema({
     required: true
   },
   // `imageUrl` is not required and of type String
-  url: {
+  imageUrl: {
     type: String,
     required: false
   },

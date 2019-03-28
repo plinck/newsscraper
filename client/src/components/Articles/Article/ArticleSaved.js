@@ -47,9 +47,9 @@ class ArticleSaved extends React.Component {
 
     render() {      
         // decontruct props
-        let { imgUrl, title, body, url } =  this.props;
-        if (!imgUrl) {
-            imgUrl = "./images/NewsScraper275x200.png";
+        let { imageUrl, title, body, url } =  this.props;
+        if (!imageUrl) {
+            imageUrl = "./images/NewsScraper275x200.png";
         } 
 
         let notesFooterDiv = this.notesFooter();
@@ -58,7 +58,7 @@ class ArticleSaved extends React.Component {
         return ( 
             <div className="card">
                 <div className="card-image">
-                    <img className="materialboxed" src={imgUrl} alt="" />
+                    <img className="materialboxed" src={imageUrl} alt="" />
                     <a href="#!" className="halfway-fab btn-floating grey">
                         <i className={this.favsClasses}>favorite</i>
                     </a>
