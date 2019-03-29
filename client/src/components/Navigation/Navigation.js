@@ -5,14 +5,6 @@ import M from "materialize-css/dist/js/materialize.min.js";
 class Navigation extends React.Component {
     constructor(props) {
         super(props);
-
-        this.navBarClass = '';
-
-        if (props.scroll){
-            this.navBarClass = 'transparent z-depth-0';
-        } else {
-            this.navBarClass = 'z-depth-0 blue darken-4';
-        }
     }
 
     componentDidMount() {
@@ -34,7 +26,8 @@ class Navigation extends React.Component {
                 </ul>
                 <nav className="nav-wrapper indigo">
                     <div className="container">
-                        <a href="/" className="brand-logo left hide-on-med-and-down"><i className="material-icons">markunread_mailbox</i>NewsScraper</a>
+                        <a href="/" className="brand-logo center hide-on-large-only">NewsScraper</a>
+                        <a href="/" className="brand-logo hide-on-med-and-down"><i className="material-icons">markunread_mailbox</i>NewsScraper</a>
                         <a href="#!" className="sidenav-trigger" data-target="mobile-links">
                             <i className="material-icons">menu</i>
                         </a>
