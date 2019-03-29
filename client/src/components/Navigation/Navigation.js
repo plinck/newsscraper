@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 class Navigation extends React.Component {
     constructor(props) {
@@ -31,8 +31,8 @@ class Navigation extends React.Component {
                         </a>
                         <ul className="right hide-on-med-and-down">
                             <li><Link to="/">Dashboard</Link></li>
-                            <li><a href="/Articles">Scrape<i className="material-icons white-text right">content_cut</i></a></li>
-                            <li><Link to="/ArticlesSaved">Saved<i className="material-icons white-text right">save</i></Link></li>
+                            <li><NavLink to="/Articles">Scrape<i className="material-icons white-text right">content_cut</i></NavLink></li>
+                            <li><NavLink to="/ArticlesSaved">Saved<i className="material-icons white-text right">save</i></NavLink></li>
                         </ul>
                     </div>
                 </nav>
