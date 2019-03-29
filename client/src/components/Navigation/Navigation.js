@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import M from "materialize-css/dist/js/materialize.min.js";
 
 class Navigation extends React.Component {
     constructor(props) {
@@ -12,6 +13,14 @@ class Navigation extends React.Component {
         } else {
             this.navBarClass = 'z-depth-0 blue darken-4';
         }
+    }
+
+    componentDidMount() {
+        let elem = document.querySelector(".sidenav");
+        M.Sidenav.init(elem, {
+            edge: "left",
+            inDuration: 250
+        });
     }
 
     render() {
